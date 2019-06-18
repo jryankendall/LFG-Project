@@ -1,7 +1,19 @@
 const router = require("express").Router();
-const userController = require("../../../controllers/user");
+const db = require("../../../controllers/user");
 
-router.route("/register")
-    .post(async (req, res) => {
-        let user = req.body;
+
+// API path: api/user/_____
+router.post("/register", async (req, res) => {
+    db.create.one(req, res);
+})
+
+router.route("/login");
+
+router.route("/dev/test/")
+    .get(async (req, res) => {
+        console.log(req.query);
+        
+        db.get.one.byName(req, res);
     })
+
+module.exports = router;

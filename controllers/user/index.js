@@ -1,4 +1,4 @@
-const db = require("../../models").User;
+const db = require("../../models/user");
 
 module.exports = {
     get: {
@@ -15,7 +15,11 @@ module.exports = {
         },
         one: {
             byName: (req, res) => {
-                db.find({ username: req.body.username }, (err, result) => {
+                console.log("Testing byName");
+                console.log(req.query.username);
+                
+                
+                db.find({ username: req.query.username }, (err, result) => {
                     if (err) {
                         console.log(err);
                         return res.status(422).json(err);
