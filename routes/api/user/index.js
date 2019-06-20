@@ -14,6 +14,23 @@ router.route("/dev/test/")
         console.log(req.query);
         
         db.get.one.byName(req, res);
+});
+
+router.route("/dev/testregister/")
+    .post(async (req, res) => {
+        console.log(req.body);
+        
+        db.create.one(req, res);
+})
+
+router.route("/dev/testdrop/")
+    .delete(async (req, res) => {
+        db.delete.all(req, res);
+});
+
+router.route("/dev/testlogin/")
+    .post(async (req, res) => {
+        db.login(req, res);
     })
 
 module.exports = router;

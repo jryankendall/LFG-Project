@@ -1,7 +1,8 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const SALT_WORK_FACTOR = process.env.SALT_WORK_FACTOR;
+var saltRounds = parseInt(process.env.SALT_WORK_FACTOR);
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema( {
@@ -14,10 +15,14 @@ userSchema
         if (!this.isModified('password')) {
             return next;
         };
-        this.password = bcrypt.hashSync(this.password, SALT_WORK_FACTOR);
+
+        
+        this.password = bcrypt.hashSync(this.password, saltRounds);
         next();
     })
     .methods.checkPass = function(plaintext, cb) {
+        console.log("Checking Passwords");
+        
         return cb(null, bcrypt.compareSync(plaintext, this.password));
     };
 
