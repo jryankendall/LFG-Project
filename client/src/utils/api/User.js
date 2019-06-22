@@ -6,8 +6,6 @@ const startUrl = `http://localhost:${PORT}`;
 console.log(PORT);
 console.log(startUrl);
 
-
-
 export default {
     get: {
         one: (conditions) => {
@@ -34,6 +32,9 @@ export default {
     register: {
         one: (userObject) => {
             console.log(userObject);
+            return axios.post(startUrl + "/api/user/register/", {
+                data: userObject
+            })
         },
         
         test: (userObject) => {

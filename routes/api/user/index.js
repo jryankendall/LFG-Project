@@ -7,7 +7,12 @@ router.post("/register", async (req, res) => {
     db.create.one(req, res);
 })
 
-router.route("/login");
+router.route("/dev/testlogin/")
+    .post(async (req, res) => {
+        db.login(req, res, (user) => {
+            console.log(user);
+        });
+});
 
 router.route("/dev/test/")
     .get(async (req, res) => {
@@ -27,10 +32,5 @@ router.route("/dev/testdrop/")
     .delete(async (req, res) => {
         db.delete.all(req, res);
 });
-
-router.route("/dev/testlogin/")
-    .post(async (req, res) => {
-        db.login(req, res);
-    })
 
 module.exports = router;

@@ -7,7 +7,8 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema( {
     username: {type: String, required: true, index: {unique: true}},
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    isAdmin: {type: Boolean, require: true, default: false}
 })
 
 userSchema
@@ -19,12 +20,28 @@ userSchema
         
         this.password = bcrypt.hashSync(this.password, saltRounds);
         next();
-    })
-    .methods.checkPass = function(plaintext, cb) {
-        console.log("Checking Passwords");
-        
-        return cb(null, bcrypt.compareSync(plaintext, this.password));
-    };
+});
+
+userSchema.statics.authenticate = function(username, plainPassword, callback) {
+    
+    User.findOne({ username: username })
+        .exec( (err, user) => {
+            if (err) { return callback(err, null) }
+            else if (!user) {
+                let err = new Error("Username or password incorrect.");
+                err.status = 401;
+                return callback(err, null);
+            }
+            bcrypt.compare(plainPassword, user.password, (err, isMatch) => {
+                if (err) console.log(err);
+                if (isMatch) {
+                    return callback(null, user);
+                } else {
+                    return callback("Username or password incorrect", null);
+                }
+            })
+        })
+};
 
 const User = mongoose.model("User", userSchema, "clients");
 

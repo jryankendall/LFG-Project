@@ -1,4 +1,5 @@
 const db = require("../../models/user");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
     get: {
@@ -31,11 +32,28 @@ module.exports = {
             }
         }
     },
-    login: (req, res) => {
-        console.log(req);
+    login: (req, res, cb) => {
         const user = req.body;
+        console.log(user);
         
-        db.find({ username: user.username }, (err, response) => {
+        
+
+        db.authenticate(user.username, user.password, (err, matchedUser) => {
+            if (err) {
+                console.log(err);
+                return res.status(401).send("Username or password incorrect.");
+            };
+            // Issue token
+            const secret = process.env.EXPRESS_SECRET;
+            const payload = { username: matchedUser.username };
+            const token = jwt.sign(payload, secret, {
+                expiresIn: '1h'
+            });
+            res.cookie('token', token, { httpOnly: true })
+                .sendStatus(200);
+        });
+        
+        /* db.find({ username: user.username }, (err, response) => {
             if (response.length != 1) {
                 return res.status(404).send("User Not Found");
             }
@@ -51,7 +69,7 @@ module.exports = {
                 })
             }
             
-        });
+        }); */
     },
     create: {
         one: (req, res) => {
