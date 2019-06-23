@@ -3,9 +3,6 @@ require("dotenv").config();
 const PORT = process.env.REACT_APP_PORT;
 const startUrl = `http://localhost:${PORT}`;
 
-console.log(PORT);
-console.log(startUrl);
-
 export default {
     get: {
         one: (conditions) => {

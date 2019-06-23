@@ -43,6 +43,16 @@ userSchema.statics.authenticate = function(username, plainPassword, callback) {
         })
 };
 
+userSchema.methods.isCorrectPassword = function(password, callback){
+    bcrypt.compare(password, this.password, function(err, same) {
+      if (err) {
+        callback(err);
+      } else {
+        callback(err, same);
+      }
+    });
+}
+
 const User = mongoose.model("User", userSchema, "clients");
 
 module.exports = User;

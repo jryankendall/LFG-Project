@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import API from '../../utils/api/User';
 
 class DevUser extends Component {
-
     state = {
         username: "UserName",
         password: "PassWord"
@@ -49,7 +48,8 @@ class DevUser extends Component {
             })
     };
     
-    testLogin = () => {
+    testLogin = (event) => {
+        event.preventDefault();
         let loginDetails = {
             username: this.state.username,
             password: this.state.password
@@ -57,7 +57,18 @@ class DevUser extends Component {
         console.log(loginDetails);
         
         API.login.test(loginDetails)
-            .then();
+            .then( (response) => {
+                console.log(response);
+                if (response.status === 200) {
+                    document.cookie = response;
+                } else {
+                    const error = new Error(response.error);
+                    throw error;
+                }
+            })
+            .catch( (err) => {
+                console.log(err);
+            })
     }
 
     dropDb = () => {

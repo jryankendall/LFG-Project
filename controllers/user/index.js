@@ -1,3 +1,5 @@
+require("dotenv").config();
+const secret = process.env.EXPRESS_SECRET;
 const db = require("../../models/user");
 const jwt = require("jsonwebtoken");
 
@@ -32,7 +34,7 @@ module.exports = {
             }
         }
     },
-    login: (req, res, cb) => {
+/*     login: (req, res, cb) => {
         const user = req.body;
         console.log(user);
         
@@ -53,7 +55,7 @@ module.exports = {
                 .sendStatus(200);
         });
         
-        /* db.find({ username: user.username }, (err, response) => {
+        db.find({ username: user.username }, (err, response) => {
             if (response.length != 1) {
                 return res.status(404).send("User Not Found");
             }
@@ -69,7 +71,56 @@ module.exports = {
                 })
             }
             
-        }); */
+        });
+    }, */    
+    login: (req, res) => {
+        const { username, password } = req.body;
+        db.findOne({ username }, function(err, user) {
+            console.log(user);
+            
+            if (err) {
+                console.log(err);
+                res.status(500)
+                    .json( {
+                        error: "Internal database error."
+                    });
+            }
+            else if (!user) {
+                res.status(401)
+                    .json( {
+                        error: "Incorrect username or password."
+                    });
+            }
+            else {
+                user.isCorrectPassword(password, function(err, same) {
+                    if (err) {
+                        res.status(500)
+                            .json({
+                                error: "Internal db error. Check your code."
+                            });
+                    }
+                    else if (!same) {
+                        res.status(401)
+                            .json( {
+                                error: "Incorrect username or password."
+                            });
+                    }
+                    else {
+                        //If details match, issues token
+                        const payload = { username };
+                        console.log(payload);
+                        
+                        const token = jwt.sign(payload, secret, {
+                            expiresIn: '2h'
+                        });
+                        console.log(token);
+                        
+                        res.cookie('token', token, { domain: "localhost"})
+                            .sendStatus(200)
+                    }
+                })
+            }
+        })
     },
     create: {
         one: (req, res) => {
@@ -79,7 +130,7 @@ module.exports = {
             
             db.create(newUser)
                 .then( () => {
-                    res.status(200);
+                    res.sendStatus(200);
                 })
                 .catch(err => {
                     console.log(err);
@@ -94,7 +145,7 @@ module.exports = {
                 console.log(err);
             })
             .then(() => {
-                res.status(200);
+                res.sendStatus(200);
                 console.log("Dropped DB");
             })
             .catch(err => {

@@ -1,10 +1,8 @@
 const router = require("express").Router();
-const path = require("path");
+const pageRoutes = require("./Home");
+const withAuth = require("../../middleware/withAuth");
 
-router.route("/")
-    .get((req, res) => {
-        console.log(req);
-        res.sendFile(path.join(__dirname, "../../client/public/index.html"))
-    });
+
+router.use("/pub", withAuth, pageRoutes);
 
 module.exports = router;
