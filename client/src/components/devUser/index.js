@@ -69,7 +69,7 @@ class DevUser extends Component {
             .catch( (err) => {
                 console.log(err);
             })
-    }
+    };
 
     dropDb = () => {
         API.delete.test.all();
