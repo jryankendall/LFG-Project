@@ -9,6 +9,9 @@ router.post("/register", async (req, res) => {
 
 router.route("/dev/testlogin/")
     .post(async (req, res) => {
+        console.log(req);
+        
+
         db.login(req, res);
 });
 

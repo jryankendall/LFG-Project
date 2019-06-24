@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import API from '../../utils/api/User';
+require("dotenv").config();
+const cookieParser = require("cookie-parser");
 
 class DevUser extends Component {
     state = {
@@ -58,9 +60,8 @@ class DevUser extends Component {
         
         API.login.test(loginDetails)
             .then( (response) => {
-                console.log(response);
                 if (response.status === 200) {
-                    document.cookie = response.data.token;
+                   console.log(response);
                 } else {
                     const error = new Error(response.error);
                     throw error;

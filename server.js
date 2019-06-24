@@ -1,11 +1,13 @@
 require("dotenv").config();
 const express = require("express");
-const session = require("express-session");
 const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const uuid = require("uuid/v4");
+const session = require("cookie-session");;
+const cookieParser = require("cookie-parser");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,14 +20,12 @@ if (process.env.NODE_ENV === "production") {
 
 //Middleware
 //Cookie Parser
-const cookieParser = require("cookie-parser");
-app.use(cookieParser(process.env.EXPRESS_SECRET));
+app.use(cookieParser());
 
 app.use(session({
+  name: "Newsesh",
   secret: process.env.EXPRESS_SECRET,
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  httpOnly: false
 }))
 
 

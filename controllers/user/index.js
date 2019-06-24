@@ -114,10 +114,13 @@ module.exports = {
                             expiresIn: '2h'
                         });
                         console.log(token);
-                        
-                        res.cookie('token', token, { domain: "localhost"})
+                    
+                        /* res.cookie('token', token, { domain: "localhost"})
                             .status(200)
-                            .json( { token: token } );
+                            .json(token); */
+                             res.cookie("Newsesh", token)
+                                .status(200)
+                                .json(token);
                     }
                 })
             }

@@ -4,17 +4,16 @@ import { Link } from 'react-router-dom';
 class Home extends Component {
 
     testHomeClick = (event) => {
-        fetch("http://localhost:3001/devtests/checkToken", {
+        fetch("http://localhost:3001/devtests/checkToken/", {
             method: "GET",
-            headers : { 
-                'Content-Type': 'application/json',
+            headers : {
                 'Accept': 'application/json'
             },
-            data: {
-                token: document.cookie
-            }
         })
-            .then(msg => { console.log(msg)});
+            .then( response => {console.log(response);
+            })
+            .then ( eff => {console.log(eff);
+            })
     }
 
     render() {

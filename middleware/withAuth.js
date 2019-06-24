@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const secret = process.env.EXPRESS_SECRET;
 
 const withAuth = function(req, res, next) {
+  
   const token =
     req.body.token ||
     req.query.token ||
@@ -17,6 +18,8 @@ const withAuth = function(req, res, next) {
         res.status(401).send('Unauthorized: Invalid token.');
       } else {
         req.username = decoded.username;
+        console.log(req.username);
+        
         next();
       }
     });
