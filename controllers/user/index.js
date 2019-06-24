@@ -116,7 +116,8 @@ module.exports = {
                         console.log(token);
                         
                         res.cookie('token', token, { domain: "localhost"})
-                            .sendStatus(200)
+                            .status(200)
+                            .json( { token: token } );
                     }
                 })
             }

@@ -60,7 +60,7 @@ class DevUser extends Component {
             .then( (response) => {
                 console.log(response);
                 if (response.status === 200) {
-                    document.cookie = response;
+                    document.cookie = response.data.token;
                 } else {
                     const error = new Error(response.error);
                     throw error;

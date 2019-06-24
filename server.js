@@ -19,7 +19,14 @@ if (process.env.NODE_ENV === "production") {
 //Middleware
 //Cookie Parser
 const cookieParser = require("cookie-parser");
-app.use(cookieParser());
+app.use(cookieParser(process.env.EXPRESS_SECRET));
+
+app.use(session({
+  secret: process.env.EXPRESS_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 
 app.use(function(req, res, next) {
