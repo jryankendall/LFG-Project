@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === "production") {
     startUrl = ``;
 };
 
-export default = {
+export default {
     get: {
         onePost: (conditions) => {
             return axios.get("/api/forum/post", {
