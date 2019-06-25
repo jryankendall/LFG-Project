@@ -8,7 +8,7 @@ class Home extends Component {
             method: "GET",
             headers : {
                 'Accept': 'application/json'
-            },
+            }
         })
             .then( response => {console.log(response);
             })

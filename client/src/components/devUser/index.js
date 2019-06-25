@@ -51,7 +51,6 @@ class DevUser extends Component {
     };
     
     testLogin = (event) => {
-        event.preventDefault();
         let loginDetails = {
             username: this.state.username,
             password: this.state.password

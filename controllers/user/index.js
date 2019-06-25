@@ -2,6 +2,7 @@ require("dotenv").config();
 const secret = process.env.EXPRESS_SECRET;
 const db = require("../../models/user");
 const jwt = require("jsonwebtoken");
+const parser = require("cookie-parser");
 
 module.exports = {
     get: {
@@ -76,8 +77,6 @@ module.exports = {
     login: (req, res) => {
         const { username, password } = req.body;
         db.findOne({ username }, function(err, user) {
-            console.log(user);
-            
             if (err) {
                 console.log(err);
                 res.status(500)
@@ -108,19 +107,14 @@ module.exports = {
                     else {
                         //If details match, issues token
                         const payload = { username };
-                        console.log(payload);
-                        
+
                         const token = jwt.sign(payload, secret, {
                             expiresIn: '2h'
                         });
-                        console.log(token);
-                    
-                        /* res.cookie('token', token, { domain: "localhost"})
+
+                        res/* .cookie('token', token, { httpOnly: true }) */
                             .status(200)
-                            .json(token); */
-                             res.cookie("Newsesh", token)
-                                .status(200)
-                                .json(token);
+                            .json();
                     }
                 })
             }

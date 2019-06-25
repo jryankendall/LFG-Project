@@ -1,9 +1,12 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const secret = process.env.EXPRESS_SECRET;
+const parser = require("cookie-parser");
 
 const withAuth = function(req, res, next) {
+  console.log(parser.JSONCookies(req.cookies));
   
+
   const token =
     req.body.token ||
     req.query.token ||

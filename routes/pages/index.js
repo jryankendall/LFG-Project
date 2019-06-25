@@ -3,6 +3,6 @@ const pageRoutes = require("./Home");
 const withAuth = require("../../middleware/withAuth");
 
 
-router.use("/pub", withAuth, pageRoutes);
+router.use("/pub", pageRoutes);
 
 module.exports = router;

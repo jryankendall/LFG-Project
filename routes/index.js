@@ -12,7 +12,7 @@ router.use("/pages", pageRoutes);
 router.use("/devtests", testRoutes);
 
 router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  res.sendFile(path.join(__dirname, "../client/public/index.html"));
 });
 
 console.log("Routes loaded");

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PartySchema = new Schema({ 
-    title: { type: String, required: true },
+    title: { type: String, required: true, index: true },
     author: { type: String, required: true },
     posted: { type: Date, required: true, default: Date.now() },
     expires: { type: Date, required: true },
@@ -27,6 +27,6 @@ const PartySchema = new Schema({
     }
 });
 
-const Party = mongoose.model("party", PartySchema, "parties");
+const Party = mongoose.model("Party", PartySchema, "parties");
 
 module.exports = Party;

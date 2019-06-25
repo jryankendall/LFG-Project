@@ -1,7 +1,10 @@
 import axios from 'axios';
 require("dotenv").config();
-const PORT = process.env.REACT_APP_PORT;
-const startUrl = `http://localhost:${PORT}`;
+const PORT = process.env.PORT || process.env.REACT_APP_PORT || 3001;
+var startUrl = `http://localhost:${PORT}`;
+if (process.env.NODE_ENV === "production") {
+    startUrl = `https://localhost:${PORT}`;
+};
 
 export default {
     get: {
@@ -23,7 +26,9 @@ export default {
     },
     login: {
         test: (loginDetails) => {
-            return axios.post(startUrl + "/api/user/dev/testlogin/", loginDetails);
+            return axios.post(startUrl + "/api/user/dev/testlogin/", loginDetails, {
+                withCredentials: true
+            });
         }
     },
     register: {
