@@ -6,10 +6,12 @@ if (process.env.NODE_ENV === "production") {
     startUrl = ``;
 };
 
-export default {
-    post: (partyObject) => {
-        return axios.post(startUrl + "/api/party/new", {
-            data: partyObject
-        })
+export default = {
+    get: {
+        onePost: (conditions) => {
+            return axios.get("/api/forum/post", {
+                params: conditions
+            });
+        }
     }
 }
