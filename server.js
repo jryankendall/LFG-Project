@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
 
 //Middleware
 //Cookie Parser
-app.use(cookieParser(process.env.EXPRESS_SECRET));
+/* app.use(cookieParser(process.env.EXPRESS_SECRET));
 
 app.use(session({
   name: "Newsesh",
@@ -28,7 +28,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   httpOnly: true
-}))
+})) */
 
 
 app.use(function(req, res, next) {

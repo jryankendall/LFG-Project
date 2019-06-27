@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 
 class Thread extends Component {
 
@@ -17,11 +18,14 @@ class Thread extends Component {
     }
 
     render(){
+        let props = this.props;
         return(
-            <div className="forum-thread">
-                <p>Thread sample text here.</p>
-                {this.props.children}
-            </div>
+            <tr className="thread-row">
+                <td className="thread-title"><Link to={`./${props.subForum}/thread/${props.url}`}>{props.title}</Link></td>
+                <td className="thread-author">{props.author}</td>
+                <td className="thread-replies">{props.replies}</td>
+                <td className="thread-last-reply">{props.lastReply}</td>
+            </tr>
         )
     }
 }

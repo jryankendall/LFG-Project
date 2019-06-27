@@ -15,6 +15,7 @@ const PartySchema = new Schema({
             source: String
         },
         members: { 
+            needApproval: { type: Boolean, required: true, default: false },
             min: { type: Number, required: true, default: 1 },
             max: { type: Number, required: false },
             wanted: { type: Number, default: 1 },
