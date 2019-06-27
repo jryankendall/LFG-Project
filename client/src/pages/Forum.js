@@ -88,6 +88,8 @@ class Forum extends Component {
                             } else {
                                 oneThread.lastReply = "None";
                             }
+
+                            oneThread.url = oneThread._id;
                             
                             return <Thread
                             key={index}
