@@ -6,6 +6,11 @@ router.route("/threads")
         db.get.bySubforum(req, res);
     } )
 
+router.route("/post")
+    .get( async (req, res) => {
+        db.get.onePost(req, res);
+    })
+
 router.route("/seedthreads")
     .post( async (req, res) => {
         db.post.new(req, res);

@@ -9,8 +9,7 @@ if (process.env.NODE_ENV === "production") {
 export default {
     get: {
         onePost: (conditions) => {
-            return axios.get("/api/forum/post", {
-                baseURL: startUrl,
+            return axios.get(startUrl + "/api/forum/post", {
                 params: conditions
             });
         },

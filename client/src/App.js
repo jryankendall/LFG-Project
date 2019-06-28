@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Test from './pages/Test';
 import ForumIndex from './pages/ForumIndex';
 import Forum from './pages/Forum';
+import Thread from './pages/Thread';
 
 class App extends Component {
   render() {
@@ -18,7 +19,8 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Home}/>
               <Route exact path='/forum' component={ForumIndex} />
-              <Route exact path={`/forum/:id`} component={Forum} />
+              <Route exact path={`/forum/:id`} component={Forum}/>
+              <Route exact path={`/forum/:id/thread/:threadid`} component={Thread} />
               <Route path="/pages/pub/home" component={Home}/>
               <Route path='/test' component={Test}/>
             </Switch>

@@ -15,6 +15,19 @@ module.exports = {
                     res.status(200).json(documents);
                 }
             })
+        },
+        onePost: (req, res) => {
+            console.log(req.query);
+            
+            db.findOne( req.query, (err, documents) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(422).json(err);
+                }
+                if (!err) {
+                    res.status(200).json(documents);
+                }
+            })
         }
     },
     post: {

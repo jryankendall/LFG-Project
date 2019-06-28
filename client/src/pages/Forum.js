@@ -24,23 +24,15 @@ class Forum extends Component {
 
     subForums = ["general", "random", "games"];
 
-    seedDB = () => {
-        API.create.seed()
-            .then( (results) => {
-                console.log(results);
-                
-            })
-            .catch( (err) => {
-                console.log(err);
-            })
-    }
-
-    testGetThreads = () => {
+    getThreadsBySubforum = () => {
+        const thisForum = this.props.match.params.id;
         API.get.threadsBySubforum( {
-            subForum: "general"
-         })
-         .then( (results) => {
-            this.setState( state => {
+            subForum: thisForum,
+            'properties.reply.isReply': false
+            
+        })
+        .then( (results) => {
+            this.setState (state => {
                 const threadList = [];
                 results.data.forEach( (element) => {
                     threadList.push(element);
@@ -53,21 +45,33 @@ class Forum extends Component {
                     }
                 }
             })
-         })
-         .catch( err => {
-             console.log(err);
-             
-         })
+        })
+    }
+
+    seedDB = () => {
+        API.create.seed()
+            .then( (results) => {
+                console.log(results);
+                
+            })
+            .catch( (err) => {
+                console.log(err);
+            })
+    }
+
+
+    async componentDidMount() {
+        await this.getThreadsBySubforum();
     }
 
     render() {
         let gotThreads = this.state.threads.pulled;
         if (this.subForums.includes(this.props.match.params.id)) {
             return(
-                <>
+                <span id={this.props.match.params.id}>
                 <div>
                     <h2>This is the {this.props.match.params.id} Subforum</h2>
-                    <button onClick={this.testGetThreads}>Get Thread Test</button>
+                    <button onClick={this.getThreadsBySubforum}>Get Thread Test</button>
                     <button onClick={this.seedDB}>Seed Database with Tests</button>
                 </div>
                 <table>
@@ -82,7 +86,6 @@ class Forum extends Component {
                     <tbody>
                         {gotThreads.map((value, index) => {
                             let oneThread = gotThreads[index];
-                            console.log(oneThread);
                             if (oneThread.properties.reply.replies.length > 0) {
                                 oneThread.lastReply = oneThread.properties.reply.replies[oneThread.properties.reply.replies.length -1];
                             } else {
@@ -103,7 +106,7 @@ class Forum extends Component {
                         })}
                     </tbody>
                 </table>
-                </>
+                </span>
             )
         } else {
             return(

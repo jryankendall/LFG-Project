@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import API from '../../utils/api/User';
 require("dotenv").config();
-const cookieParser = require("cookie-parser");
 
 class DevUser extends Component {
     state = {
