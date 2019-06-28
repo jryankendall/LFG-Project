@@ -12,7 +12,8 @@ const userSchema = new Schema( {
     password: {type: String, required: true},
     isAdmin: {type: Boolean, required: true, default: false},
     bio: { type: String },
-    timezone: { type: String }
+    timezone: { type: String },
+    postCount: { type: Number, default: 0 }
 })
 
 userSchema

@@ -11,6 +11,11 @@ router.route("/post")
         db.get.onePost(req, res);
     })
 
+router.route("/replies")
+    .get( async (req, res) => {
+        db.get.replies(req, res);
+    })
+
 router.route("/seedthreads")
     .post( async (req, res) => {
         db.post.new(req, res);

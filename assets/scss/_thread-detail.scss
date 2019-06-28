@@ -1,0 +1,16 @@
+.post-header {
+    border-bottom: solid 1px black;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.thread-poster-info {
+    align-content: left;
+    text-align: center;
+    border-right: solid 1px black;
+}
+
+.post-row {
+    border: solid 1px black;
+}

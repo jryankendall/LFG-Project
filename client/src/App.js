@@ -8,6 +8,7 @@ import Test from './pages/Test';
 import ForumIndex from './pages/ForumIndex';
 import Forum from './pages/Forum';
 import Thread from './pages/Thread';
+import NewThread from './pages/NewThread';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
               <Route exact path='/forum' component={ForumIndex} />
               <Route exact path={`/forum/:id`} component={Forum}/>
               <Route exact path={`/forum/:id/thread/:threadid`} component={Thread} />
+              <Route exact path={`/forum/:id/post`} component={NewThread} />
               <Route path="/pages/pub/home" component={Home}/>
               <Route path='/test' component={Test}/>
             </Switch>

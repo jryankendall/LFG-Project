@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Thread from '../components/Thread';
 import API from '../utils/api/Post';
+import { Link } from 'react-router-dom';
 
 class Forum extends Component {
 
@@ -73,6 +74,7 @@ class Forum extends Component {
                     <h2>This is the {this.props.match.params.id} Subforum</h2>
                     <button onClick={this.getThreadsBySubforum}>Get Thread Test</button>
                     <button onClick={this.seedDB}>Seed Database with Tests</button>
+                    <Link to={`./${this.props.match.params.id}/post`}><button>Create New Thread</button></Link>
                 </div>
                 <table>
                     <thead>

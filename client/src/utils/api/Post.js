@@ -17,6 +17,11 @@ export default {
             return axios.get(startUrl + "/api/forum/threads", {
                 params: conditions
             })
+        },
+        repliesToPost: (conditions) => {
+            return axios.get(startUrl + "/api/forum/replies", {
+                params: conditions
+            })
         }
     },
     create: {
