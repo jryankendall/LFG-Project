@@ -10,6 +10,14 @@ router.route("/post")
     .get( async (req, res) => {
         db.get.onePost(req, res);
     })
+    .post( async (req, res) => {
+        db.post.new(req, res);
+    })
+
+router.route("/update")
+    .post( async (req, res) => {
+        db.update.one(req, res);
+    })
 
 router.route("/replies")
     .get( async (req, res) => {

@@ -11,7 +11,7 @@ class Reply extends Component {
                             <h5>Posted: {props.posted}</h5>
                         </div>
                         <div className="col s2 thread-poster-info">
-                            <i class="material-icons large">person</i>
+                            <i className="material-icons large">person</i>
                             <p>{props.author}</p>
                         </div>
                         <div className="col s10 thread-post-box">

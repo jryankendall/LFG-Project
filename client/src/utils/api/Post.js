@@ -24,6 +24,14 @@ export default {
             })
         }
     },
+    update: {
+        onePost: (conditions, update) => {
+            return axios.post(startUrl + "/api/forum/update", {
+                params: conditions,
+                data: update
+            })
+        }
+    },
     create: {
         seed: () => {
             let threads = [];
@@ -44,6 +52,11 @@ export default {
             }
             return axios.post(startUrl + "/api/forum/seedthreads", {
                 data: threads
+            })
+        },
+        new: (thread) => {
+            return axios.post(startUrl + "/api/forum/post", {
+                data: thread
             })
         }
     }

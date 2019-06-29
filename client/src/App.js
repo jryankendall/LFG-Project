@@ -13,8 +13,14 @@ import NewThread from './pages/NewThread';
 class App extends Component {
   render() {
     const App = () => (
-      <div className="container">
+      <div className="container light-blue lighten-5 main-app-body">
         <Nav />
+        <br></br>
+        <div className="row">
+          <div className="col s12">
+            <p>Site Path Here </p>
+          </div>
+        </div>
         <div className="row">
           <div className="col s12">
             <Switch>

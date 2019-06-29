@@ -12,5 +12,11 @@
 }
 
 .post-row {
-    border: solid 1px black;
+    border-bottom: solid 1px black;
+    border-top: solid 1px black;
+    background-color: white;
+}
+
+.thread-post-box {
+    min-height: 150px;
 }

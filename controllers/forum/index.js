@@ -3,7 +3,6 @@ const db = require("../../models/forum");
 module.exports = {
     get: {
         bySubforum: (req, res) => {
-            console.log(req.query);
             
             
             db.find( req.query, (err, documents) => {
@@ -16,8 +15,7 @@ module.exports = {
                 }
             })
         },
-        onePost: (req, res) => {
-            console.log(req.query);
+        onePost: (req, res) => {;
             
             db.findOne( req.query, (err, documents) => {
                 if (err) {
@@ -30,8 +28,6 @@ module.exports = {
             })
         },
         replies: (req, res) => {
-            console.log(req.query);
-            
             db.find(req.query, (err, documents) => {
                 if (err) {
                     console.log(err);
@@ -45,8 +41,6 @@ module.exports = {
     },
     post: {
         new: (req, res) => {
-            console.log(req);
-            
             db.create( req.body.data, (err, docs) => {
                 if (err) {
                     console.log(err);
@@ -55,10 +49,30 @@ module.exports = {
 
                 console.log(docs);
                 if (!err) {
-                    console.log(res);
                     res.status(200).json(docs);
                 }
             })
+        }
+    },
+    update: {
+        one: (req, res) => {
+            console.log(req.body.params);
+            console.log(req.body.data);
+            
+            
+            
+            db.updateOne( req.body.params, req.body.data, (err, docs) => {
+                if (err) {
+                    console.log(err);
+                    res.status(422).json(err);
+                }
+
+                console.log(docs);
+                if (!err) {
+                    res.status(200).json(docs);
+                }
+                
+            } )
         }
     }
 }

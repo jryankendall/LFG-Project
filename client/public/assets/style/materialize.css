@@ -8105,7 +8105,31 @@ input[type=range]::-ms-thumb {
 }
 
 .post-row {
+  border-bottom: solid 1px black;
+  border-top: solid 1px black;
+  background-color: white;
+}
+
+#post-body {
+  min-height: 200px;
+  background-color: #fff;
+}
+
+#nickname {
+  background-color: #fff;
+}
+
+.form-column {
   border: solid 1px black;
+  border-bottom: 0;
+}
+
+.form-post-column {
+  border-bottom: solid 1px black;
+}
+
+.main-app-body {
+  min-height: 1024px;
 }
 
 /*# sourceMappingURL=materialize.css.map */
