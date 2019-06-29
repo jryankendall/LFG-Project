@@ -6,7 +6,8 @@ const PartySchema = new Schema({
     title: { type: String, required: true, index: true },
     author: { type: String, required: true },
     posted: { type: Date, required: true, default: Date.now() },
-    expires: { type: Date, required: true },
+    expires: { type: Date, required: true, default: Date.now() },
+    category: {type: String, required: true, default: "other"},
     details: {
         body: { type: String, required: true },
         goals: {

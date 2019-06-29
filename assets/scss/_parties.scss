@@ -1,0 +1,20 @@
+.category-picker {
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 12px;
+}
+
+.search-container {
+    background-color: white;
+    border: solid 1px black;
+}
+
+#search-container {
+    min-height: 150px;
+}
+
+#submit-search-btn {
+    margin-bottom: 12px;
+}

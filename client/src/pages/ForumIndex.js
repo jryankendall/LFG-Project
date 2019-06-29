@@ -12,6 +12,7 @@ class ForumIndex extends Component {
 
             <p><Link to={`${process.env.PUBLIC_URL}/forum/general`}> General </Link></p>
             <p><Link to={`${process.env.PUBLIC_URL}/forum/random`}> Random </Link></p>
+            <p><Link to={`${process.env.PUBLIC_URL}/forum/games`}> Games </Link></p>
             </>
         )
     }

@@ -21,9 +21,9 @@ class Sitepath extends Component {
                     let notAZ = /[^a-z]/gi;
                     let displayValue = value.replace(notAZ, "");
                     return( 
-                        <>
+                        <div key={index}>
                         <Link to={`${process.env.PUBLIC_URL}${value}`}>{displayValue}</Link> &nbsp; > &nbsp;
-                        </>
+                        </div>
                     )
                 })}
             </div>

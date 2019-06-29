@@ -15,6 +15,17 @@ module.exports = {
         },
         one: {
 
+        },
+        byCategory: (req, res) => {
+            db.find(req.body.data, (err, document) => {
+                if (err) {
+                    console.log(err)
+                    return res.status(422).json(err);
+                };
+                if (!err) {
+                    res.status(200).json(document);
+                }
+            })
         }
     },
     post: {

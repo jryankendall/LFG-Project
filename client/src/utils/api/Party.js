@@ -11,5 +11,10 @@ export default {
         return axios.post(startUrl + "/api/party/new", {
             data: partyObject
         })
+    },
+    get: (conditions) => {
+        return axios.get(startUrl + "/api/party/search", {
+            data: conditions
+        })
     }
 }
