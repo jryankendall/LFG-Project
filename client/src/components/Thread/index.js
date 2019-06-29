@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 class Thread extends Component {
 
@@ -19,12 +20,18 @@ class Thread extends Component {
 
     render(){
         let props = this.props;
+        let lastReply;
+        if (props.lastReplyDate !== "Never") {
+            lastReply = moment(props.lastReplyDate).format("MMMM Do YYYY, h:mm:ss a");
+        } else {
+            lastReply = "Never";
+        }
         return(
             <tr className="thread-row">
                 <td className="thread-title"><Link to={`./${props.subForum}/thread/${props.url}`}>{props.title}</Link></td>
                 <td className="thread-author">{props.author}</td>
                 <td className="thread-replies">{props.replies}</td>
-                <td className="thread-last-reply">{props.lastReply}</td>
+                <td className="thread-last-reply">by {props.lastReplyAuthor}, on {lastReply}</td>
             </tr>
         )
     }

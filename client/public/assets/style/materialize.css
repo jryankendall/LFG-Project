@@ -8098,6 +8098,13 @@ input[type=range]::-ms-thumb {
   justify-content: space-between;
 }
 
+.reply-header {
+  border-bottom: solid 1px black;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
 .thread-poster-info {
   align-content: left;
   text-align: center;
@@ -8108,6 +8115,10 @@ input[type=range]::-ms-thumb {
   border-bottom: solid 1px black;
   border-top: solid 1px black;
   background-color: white;
+}
+
+.thread-post-box {
+  min-height: 150px;
 }
 
 #post-body {
@@ -8130,6 +8141,15 @@ input[type=range]::-ms-thumb {
 
 .main-app-body {
   min-height: 1024px;
+}
+
+.welcome-message {
+  text-align: center;
+}
+
+.site-path {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 /*# sourceMappingURL=materialize.css.map */

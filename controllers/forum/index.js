@@ -5,7 +5,7 @@ module.exports = {
         bySubforum: (req, res) => {
             
             
-            db.find( req.query, (err, documents) => {
+            db.find( req.query, null, { sort: { 'properties.reply.replies[0].posted': -1 } }, (err, documents) => {
                 if (err) {
                     console.log(err)
                     return res.status(422).json(err);

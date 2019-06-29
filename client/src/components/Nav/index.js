@@ -9,8 +9,7 @@ class Nav extends Component {
                 <div className="nav-wrapper blue darken-1">
                     <ul>
                         <li><Link to={'../../../'}>Home</Link></li>
-                        <li><Link to={'../../../test'}>Test Page</Link></li>
-                        <li><Link to={'../../../forum'}>Forum</Link></li>
+                        <li><Link to={'../../../forum'}>Forums</Link></li>
                     </ul>
                 </div>
             </nav>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from '../utils/api/Post';
+import { Redirect } from 'react-router'
 
 class NewThread extends Component {
 
@@ -8,9 +9,11 @@ class NewThread extends Component {
         title: "",
         body: "",
         subForum: this.props.match.params.id,
+        fireRedirect: false
     }
 
-    submitPost = () => {
+    submitPost = (event) => {
+        event.preventDefault();
         const state = this.state;
         let newThread = {
             author: state.author,
@@ -19,14 +22,15 @@ class NewThread extends Component {
             subForum: state.subForum,
             properties: {
                 reply: {
-                    isReply: false
+                    isReply: false,
+                    replies: []
                 }
             }
         }
         API.create.new(newThread)
             .then( (response) => {
                 console.log(response);
-                
+                this.setState({ fireRedirect: true })
             })
             .catch(err => {
                 console.log(err);
@@ -63,6 +67,9 @@ class NewThread extends Component {
     }
 
     render() {
+        const { from } = this.props.location.state || '/';
+        const { fireRedirect } = this.state;
+    
         return(
             <div className="row">
                 <form className="col s12">
@@ -93,10 +100,13 @@ class NewThread extends Component {
                     </div>
 
                     <i className="material-icons">send</i> &nbsp;
-                    <button className="btn waves-effect" id="submit-thread-btn" onClick={this.submitPost}>
+                    <button className="btn waves-effect" id="submit-thread-btn" onClick={this.submitPost.bind(this)}>
                         <span>Submit Post</span>
                     </button>
 
+                    {fireRedirect && (
+                    <Redirect to={from || '/'}/>
+                    )}
                 </form>
             </div>
         )

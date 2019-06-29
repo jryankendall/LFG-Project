@@ -5,6 +5,13 @@
     justify-content: space-between;
 }
 
+.reply-header {
+    border-bottom: solid 1px black;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
 .thread-poster-info {
     align-content: left;
     text-align: center;

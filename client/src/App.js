@@ -9,6 +9,8 @@ import ForumIndex from './pages/ForumIndex';
 import Forum from './pages/Forum';
 import Thread from './pages/Thread';
 import NewThread from './pages/NewThread';
+import Sitepath from './components/Sitepath';
+import NotFound from './pages/NotFound';
 
 class App extends Component {
   render() {
@@ -17,9 +19,7 @@ class App extends Component {
         <Nav />
         <br></br>
         <div className="row">
-          <div className="col s12">
-            <p>Site Path Here </p>
-          </div>
+          <Sitepath />
         </div>
         <div className="row">
           <div className="col s12">
@@ -31,6 +31,7 @@ class App extends Component {
               <Route exact path={`/forum/:id/post`} component={NewThread} />
               <Route path="/pages/pub/home" component={Home}/>
               <Route path='/test' component={Test}/>
+              <Route path={`/forum/:id/thread/`} component={NotFound} />
             </Switch>
           </div>
         </div>

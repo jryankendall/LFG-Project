@@ -18,16 +18,10 @@ class Home extends Component {
 
     render() {
         return(
-            <div>
-                <h2>THIS is the HOME PAGE</h2>
-                <Link to={'./test'}>
-                    <button variant="raised">
-                        Test
-                    </button>
-                </Link>
-                <button variant="raised" onClick={this.testHomeClick}>
-                    Test Home Link
-                </button>
+            <div className="welcome-message">
+                <h1>Welcome to the LFG Community!</h1>
+                
+                <p>As you can see, everything here is under construction. However, feel free to visit our forums, via the link above!</p>
             </div>
         )
     }

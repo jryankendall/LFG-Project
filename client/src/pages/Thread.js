@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from '../utils/api/Post';
 import Reply from '../components/Reply';
+import moment from 'moment';
 
 class Thread extends Component {
 
@@ -69,6 +70,7 @@ class Thread extends Component {
         let newReply = {
             author: state.author,
             body: state.body,
+            posted: Date.now(),
             subForum: this.props.match.params.id,
             properties: {
                 reply: {
@@ -85,6 +87,10 @@ class Thread extends Component {
                 console.log(document.data);
                 
                 let opReplies = parseInt(document.data.properties.reply.repliesNum) + 1;
+                let newLastReply = [ {
+                    author: newReply.author,
+                    posted: newReply.posted
+                }]
                 console.log(opReplies);
 
                 let passedValues = {
@@ -93,7 +99,7 @@ class Thread extends Component {
                             isReply: document.data.properties.reply.isReply,
                             replyTo: document.data.properties.reply.replyTo,
                             repliesNum: opReplies,
-                            replies: document.data.properties.reply.replies
+                            replies: newLastReply
                         }
                     }
                 }
@@ -102,7 +108,6 @@ class Thread extends Component {
                 API.update.onePost( { _id: threadId }, passedValues)
                     .then(succ => {
                         console.log(succ);
-                        
                     })
             })
 
@@ -149,7 +154,7 @@ class Thread extends Component {
                     <div className="row post-row">
                         <div className="col s12 post-header">
                             <h4>{originalPost.title}</h4>
-                            <h5>Posted: {originalPost.posted}</h5>
+                            <h5>Posted: &nbsp;{moment(originalPost.posted).format("MMMM Do YYYY, h:mm:ss a")}</h5>
                         </div>
                         <div className="col s2 thread-poster-info">
                             <i className="material-icons large">person</i>

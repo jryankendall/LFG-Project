@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 class Reply extends Component {
 
@@ -7,8 +8,8 @@ class Reply extends Component {
         return(
             <div className="row post-row">
                 <div className="col s12 whole-post-box">
-                        <div className="col s12 post-header">
-                            <h5>Posted: {props.posted}</h5>
+                        <div className="col s12 reply-header">
+                            <h5>Posted: &nbsp;{moment(props.posted).format("MMMM Do YYYY, h:mm:ss a")}</h5>
                         </div>
                         <div className="col s2 thread-poster-info">
                             <i className="material-icons large">person</i>

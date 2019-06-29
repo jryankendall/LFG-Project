@@ -72,8 +72,6 @@ class Forum extends Component {
                 <span id={this.props.match.params.id}>
                 <div>
                     <h2>This is the {this.props.match.params.id} Subforum</h2>
-                    <button onClick={this.getThreadsBySubforum}>Get Thread Test</button>
-                    <button onClick={this.seedDB}>Seed Database with Tests</button>
                     <Link to={`./${this.props.match.params.id}/post`}><button>Create New Thread</button></Link>
                 </div>
                 <table>
@@ -91,7 +89,10 @@ class Forum extends Component {
                             if (oneThread.properties.reply.replies.length > 0) {
                                 oneThread.lastReply = oneThread.properties.reply.replies[oneThread.properties.reply.replies.length -1];
                             } else {
-                                oneThread.lastReply = "None";
+                                oneThread.lastReply = {
+                                    author: "Nobody",
+                                    posted: "Never"
+                                };
                             }
 
                             oneThread.url = oneThread._id;
@@ -102,7 +103,8 @@ class Forum extends Component {
                             title={oneThread.title}
                             replies={oneThread.properties.reply.repliesNum}
                             author={oneThread.author}
-                            lastReply={oneThread.lastReply}
+                            lastReplyAuthor={oneThread.lastReply.author}
+                            lastReplyDate={oneThread.lastReply.posted}
                             url={oneThread.url}
                              />
                         })}
