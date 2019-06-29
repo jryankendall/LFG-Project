@@ -10,7 +10,7 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/jryankendall/LFG-Project/issues"
   },
-  "homepage": "https://github.com/jryankendall/LFG-Project#readme",
+  "homepage": "https://jk-looking-for-group.herokuapp.com/",
   "dependencies": {
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",

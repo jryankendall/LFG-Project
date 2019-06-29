@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import API from '../utils/api/Post';
-import { Redirect } from 'react-router'
 
 class NewThread extends Component {
 
@@ -13,7 +12,6 @@ class NewThread extends Component {
     }
 
     submitPost = (event) => {
-        event.preventDefault();
         const state = this.state;
         let newThread = {
             author: state.author,
@@ -103,10 +101,6 @@ class NewThread extends Component {
                     <button className="btn waves-effect" id="submit-thread-btn" onClick={this.submitPost.bind(this)}>
                         <span>Submit Post</span>
                     </button>
-
-                    {fireRedirect && (
-                    <Redirect to={from || '/'}/>
-                    )}
                 </form>
             </div>
         )
