@@ -10,8 +10,8 @@ class ForumIndex extends Component {
 
             <h4>Subforums</h4>
 
-            <p><Link to={'forum/general'}> General </Link></p>
-            <p><Link to={'forum/random'}> Random </Link></p>
+            <p><Link to={`${process.env.PUBLIC_URL}/forum/general`}> General </Link></p>
+            <p><Link to={`${process.env.PUBLIC_URL}/forum/random`}> Random </Link></p>
             </>
         )
     }

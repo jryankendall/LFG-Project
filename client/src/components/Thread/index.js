@@ -28,7 +28,7 @@ class Thread extends Component {
         }
         return(
             <tr className="thread-row">
-                <td className="thread-title"><Link to={`./${props.subForum}/thread/${props.url}`}>{props.title}</Link></td>
+                <td className="thread-title"><Link to={`${process.env.PUBLIC_URL}/forum/${props.subForum}/thread/${props.url}`}>{props.title}</Link></td>
                 <td className="thread-author">{props.author}</td>
                 <td className="thread-replies">{props.replies}</td>
                 <td className="thread-last-reply">by {props.lastReplyAuthor}, on {lastReply}</td>

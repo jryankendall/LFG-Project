@@ -8,8 +8,8 @@ class Nav extends Component {
             <nav>
                 <div className="nav-wrapper blue darken-1">
                     <ul>
-                        <li><Link to={'../../../'}>Home</Link></li>
-                        <li><Link to={'../../../forum'}>Forums</Link></li>
+                        <li><Link to={`${process.env.PUBLIC_URL}/`}>Home</Link></li>
+                        <li><Link to={`${process.env.PUBLIC_URL}/forum`}>Forums</Link></li>
                     </ul>
                 </div>
             </nav>
