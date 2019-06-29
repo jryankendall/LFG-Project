@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Party from '../components/Party';
 import API from '../utils/api/Party';
+import { Link } from 'react-router-dom';
 
 class Parties extends Component {
 
@@ -25,20 +26,33 @@ class Parties extends Component {
     }
 
     searchForParties = () => {
-        API.get( { category: this.state.searchCategory } )
-            .then( (response) => {
-                console.log(response);
-                
-            })
-            .catch( err => {
-                console.log(err);
-                
-            })
+        if (this.state.searchCategory) {
+            API.get( { category: this.state.searchCategory } )
+                .then( (response) => {
+                    console.log(response);
+                    
+                })
+                .catch( err => {
+                    console.log(err);
+                    
+                })
+        } else {
+            console.log("No search category, how?");
+            
+        }
     }
 
     render() {
         return(
             <div className="row">
+                <div className="col s12">
+                    <Link to={`${process.env.PUBLIC_URL}/parties/new`}>
+                        <button className="btn col s6 offset-s3 waves-effect" id="new-party-btn">
+                            Create New Party
+                        </button>
+                    </Link>
+                </div>
+                <p style={ { 'text-align': 'center' }}>Or...</p>
                 <div className="col s8 offset-s2 search-container" id="search-container">
                     <div className="input-field col s10 offset-s1">
                         <input id="party-search-box" type="text" />

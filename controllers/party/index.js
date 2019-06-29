@@ -35,13 +35,13 @@ module.exports = {
             
             
             db.create(newParty)
-                .then( () => {
-                    res.sendStatus(200);
+                .then( ( doc) => {
+                    res.status(200).json(doc);
                 })
                 .catch( err => {
                     console.log(err);
                     
-                    res.sendStatus(422).json(err);
+                    res.status(422).json(err);
                 })
         }
     }

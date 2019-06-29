@@ -5,8 +5,6 @@ class Sitepath extends Component {
 
     render() {
         let here = document.location.pathname.split("/");
-        console.log(here);
-        
         for (let i = here.length-1; i > 0; i--) {
             let newvalue = "";
             for (let j = here.length-1; j > i; j--) {

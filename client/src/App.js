@@ -11,6 +11,7 @@ import NewThread from './pages/NewThread';
 import Sitepath from './components/Sitepath';
 import NotFound from './pages/NotFound';
 import Parties from './pages/Parties';
+import NewParty from './pages/NewParty';
 
 class App extends Component {
   render() {
@@ -30,6 +31,7 @@ class App extends Component {
               <Route exact path={`${process.env.PUBLIC_URL}/forum/:id/thread/:threadid`} component={Thread} />
               <Route exact path={`/${process.env.PUBLIC_URL}forum/:id/post`} component={NewThread} />
               <Route exact path={`${process.env.PUBLIC_URL}/parties`} component={Parties} />
+              <Route exact path={`${process.env.PUBLIC_URL}/parties/new`} component={NewParty} />
               <Route path={`${process.env.PUBLIC_URL}/forum/:id/thread/`} component={NotFound} />
             </Switch>
           </div>
