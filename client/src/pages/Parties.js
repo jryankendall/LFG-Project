@@ -46,7 +46,7 @@ class Parties extends Component {
         return(
             <div className="row">
                 <div className="col s12">
-                    <Link to={`${process.env.PUBLIC_URL}/parties/new`}>
+                    <Link to={`/parties/new`}>
                         <button className="btn col s6 offset-s3 waves-effect" id="new-party-btn">
                             Create New Party
                         </button>

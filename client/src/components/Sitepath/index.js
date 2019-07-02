@@ -20,7 +20,7 @@ class Sitepath extends Component {
                     let displayValue = value.replace(notAZ, "");
                     return( 
                         <div key={index}>
-                        <Link to={`${process.env.PUBLIC_URL}${value}`}>{displayValue}</Link> &nbsp; > &nbsp;
+                        <Link to={`${value}`}>{displayValue}</Link> &nbsp; > &nbsp;
                         </div>
                     )
                 })}

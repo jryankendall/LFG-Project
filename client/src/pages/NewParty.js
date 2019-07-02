@@ -5,7 +5,10 @@ class NewParty extends Component {
 
     state = {
         new: {
-            author: ""
+            author: "",
+            'members-got': 1,
+            'members-min': 3,
+            'members-max': 5,
         }
     }
 
@@ -13,7 +16,11 @@ class NewParty extends Component {
         let stateName = event.target.name;
         let value = event.target.value;
 
-        if (event.target.type !== "number") {
+        if (event.target.type === "number") {
+            value = parseInt(value);
+        }
+
+        if (true) {
             this.setState(state => {
                 return {
                     ...state,
@@ -61,16 +68,16 @@ class NewParty extends Component {
                     </div>
                     <div className="row">
                         <div className="col l4 offset-l0 s10 offset-s1 input-field">
-                            <input type="number" name="members-got" id="have-members" step="1" min="1" max="20" />
-                            <label htmlFor="have-members">How Many You Got?</label>
+                            <input type="number" name="members-got" id="have-members" step="1" min="1" max="20" value={party['members-got']} onChange={this.inputChanged} />
+                            <label htmlFor="have-members">How Many You Got? (Including You)</label>
                         </div>
                         <div className="col l4 offset-l0 s10 offset-s1 input-field">
-                            <input type="number" name="members-min" id="min-members" step="1" min="2" max="30" />
-                            <label htmlFor="min-members">How Many You Want, Minimum?</label>
+                            <input type="number" name="members-min" id="min-members" step="1" min="1" max="30" value={party['members-min']} onChange={this.inputChanged} />
+                            <label htmlFor="min-members">How Many You Want? (Not Including You)</label>
                         </div>
                         <div className="col l4 offset-l0 s10 offset-s1 input-field">
-                            <input type="number" name="members-max" id="max-members" step="1" min="1" max="30" />
-                            <label htmlFor="max-members">But No More Than</label>
+                            <input type="number" name="members-max" id="max-members" step="1" min="1" max="30" value={party['members-max']} onChange={this.inputChanged} />
+                            <label htmlFor="max-members">Total Max Peeps (Including You)</label>
                         </div>
                     </div>
                 </form>

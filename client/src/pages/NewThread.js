@@ -74,14 +74,14 @@ class NewThread extends Component {
                         <div className="col s12 form-column">
                             <div className="input-field col s6">
                                 <i className="material-icons prefix">person</i>
-                                <input placeholder="Anonymous" id="nickname" type="text" onChange={this.inputChanged} value={this.state.author} />
+                                <input id="nickname" type="text" onChange={this.inputChanged} value={this.state.author} />
                                 <label htmlFor="nickname">Nickname</label>
                             </div>
                         </div>
                         <div className="col s12 form-column">
                             <div className="input-field col s10">
                                 <i className="material-icons prefix">label</i>
-                                <input placeholder="Title" id="thread-title" type="text" onChange={this.inputChanged} value={this.state.title}/>
+                                <input id="thread-title" type="text" onChange={this.inputChanged} value={this.state.title}/>
                                 <label htmlFor="thread-title">Thread Title</label>
                             </div>
                         </div>

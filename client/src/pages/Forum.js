@@ -72,7 +72,7 @@ class Forum extends Component {
                 <span id={this.props.match.params.id}>
                 <div>
                     <h2>This is the {this.props.match.params.id} Subforum</h2>
-                    <Link to={`${process.env.PUBLIC_URL}/forum/${this.props.match.params.id}/post`}><button>Create New Thread</button></Link>
+                    <Link to={`/forum/${this.props.match.params.id}/post`}><button>Create New Thread</button></Link>
                 </div>
                 <table>
                     <thead>
