@@ -13,6 +13,9 @@ import NotFound from './pages/NotFound';
 import Parties from './pages/Parties';
 import NewParty from './pages/NewParty';
 
+
+require("dotenv").config();
+
 class App extends Component {
   render() {
     const App = () => (

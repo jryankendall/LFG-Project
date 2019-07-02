@@ -33,10 +33,9 @@ class Thread extends Component {
         const threadId = this.props.match.params.threadid;
         API.get.onePost( { _id: threadId })
             .then( (result) => {
-                console.log(result.data);
+                if (result.data) {
                 API.get.repliesToPost( { 'properties.reply.replyTo' : threadId } )
                 .then( (replies) => {
-                    console.log(replies.data);
                     this.setState( state => {
 
                         return {
@@ -51,7 +50,8 @@ class Thread extends Component {
                 .catch(err =>{
                     console.log(err);
                     
-                })
+                }) 
+                }
                 
             })
             .catch (err => {
@@ -79,44 +79,47 @@ class Thread extends Component {
                 }
             }
         }
-        API.create.new(newReply)
-            .then( (response) => {
-                console.log("Reply posted.");
-                API.get.onePost( { _id: threadId })
-            .then( (document) => {
-                console.log(document.data);
-                
-                let opReplies = parseInt(document.data.properties.reply.repliesNum) + 1;
-                let newLastReply = [ {
-                    author: newReply.author,
-                    posted: newReply.posted
-                }]
-                console.log(opReplies);
+        if (state.mongoid !== "69") {
+            API.create.new(newReply)
+                .then( (response) => {
+                    console.log("Reply posted.");
+                    API.get.onePost( { _id: threadId })
+                .then( (document) => {
 
-                let passedValues = {
-                    properties: {
-                        reply: {
-                            isReply: document.data.properties.reply.isReply,
-                            replyTo: document.data.properties.reply.replyTo,
-                            repliesNum: opReplies,
-                            replies: newLastReply
+                    let opReplies = parseInt(document.data.properties.reply.repliesNum) + 1;
+                    let newLastReply = [ {
+                        author: newReply.author,
+                        posted: newReply.posted
+                    }]
+
+                    let passedValues = {
+                        properties: {
+                            reply: {
+                                isReply: document.data.properties.reply.isReply,
+                                replyTo: document.data.properties.reply.replyTo,
+                                repliesNum: opReplies,
+                                replies: newLastReply
+                            }
                         }
                     }
-                }
-                
+                    
 
-                API.update.onePost( { _id: threadId }, passedValues)
-                    .then(succ => {
-                        console.log(succ);
-                    })
-            })
+                    API.update.onePost( { _id: threadId }, passedValues)
+                        .then(succ => {
+                            console.log(succ);
+                        })
+                })
 
-                
-            })
-            .catch(err => {
-                console.log(err);
-                
-            })
+                    
+                })
+                .catch(err => {
+                    console.log(err);
+                    
+                })
+        } else {
+            console.log("Invalid thread.");
+            
+        }
 
     }
 

@@ -5,10 +5,9 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema( {
     author: { type: String, required: true },
     title: { type: String, required: true, default: "Reply"},
-    posted: { type: Date, required: true, default: Date.now() },
+    posted: { type: Date, expires: '120m', required: true, default: Date.now },
     subForum: { type: String, required: true, default: "general" },
     body: { type: String, required: true, default: "Line" },
-    expires: { type: Date, required: true, default: Date.now() },
     properties: {
         reply: {
             isReply: { type: Boolean, required: true, default: false },
