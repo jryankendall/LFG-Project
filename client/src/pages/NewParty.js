@@ -82,7 +82,7 @@ class NewParty extends Component {
                         </div>
                     </div>
                     <div className="row">
-
+                        <PartyGoal category={this.state.new.category} />
                     </div>
                 </form>
             </div>
