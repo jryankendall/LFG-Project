@@ -6,6 +6,7 @@ const PartySchema = new Schema({
     title: { type: String, required: true, index: true, default: "No Title" },
     author: { type: String, required: true, default: "Anon" },
     posted: { type: Date, required: true, default: Date.now },
+    expiry: {type: Date, expires: '1m', required: true, default: Date.now },
     category: {type: String, required: true, default: "other"},
     details: {
         body: { type: String, required: true, default: "Body Here" },
@@ -25,12 +26,7 @@ const PartySchema = new Schema({
             start: { type: Date, required: true, default: Date.now },
             end: { type: Date, required: true, default: Date.now }
         }
-    },
-    expireAt: {
-        type: Date,
-        default: Date.now,
-        index: { expires: '1m' },
-    },
+    }
 });
 
 const Party = mongoose.model("Party", PartySchema, "parties");
