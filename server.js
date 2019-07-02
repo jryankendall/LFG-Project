@@ -5,12 +5,14 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const pino = require('express-pino-logger')();
 const uuid = require("uuid/v4");
 const session = require("express-session");;
 const cookieParser = require("cookie-parser");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(pino);
 
 
 if (process.env.NODE_ENV === "production") {

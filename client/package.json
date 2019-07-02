@@ -3,6 +3,7 @@
   "homepage": "https://jk-looking-for-group.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
   "main": "index.js",
   "dependencies": {
     "if-env": "^1.0.4",
