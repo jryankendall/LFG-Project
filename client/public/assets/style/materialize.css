@@ -8177,4 +8177,9 @@ input[type=range]::-ms-thumb {
   margin-bottom: 12px;
 }
 
+.party-form {
+  background-color: white;
+  border: solid 1px #333333;
+}
+
 /*# sourceMappingURL=materialize.css.map */

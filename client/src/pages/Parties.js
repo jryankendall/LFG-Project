@@ -52,7 +52,7 @@ class Parties extends Component {
                         </button>
                     </Link>
                 </div>
-                <p style={ { 'text-align': 'center' }}>Or...</p>
+                <p style={ { 'textAlign': 'center' }}>Or...</p>
                 <div className="col s8 offset-s2 search-container" id="search-container">
                     <div className="input-field col s10 offset-s1">
                         <input id="party-search-box" type="text" />

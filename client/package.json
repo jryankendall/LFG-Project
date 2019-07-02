@@ -2,6 +2,7 @@
   "name": "lfg-project",
   "version": "0.1.0",
   "private": true,
+  "main": "index.js",
   "dependencies": {
     "moment": "^2.24.0",
     "react": "^16.8.6",

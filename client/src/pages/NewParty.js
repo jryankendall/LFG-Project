@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PartyGoal from '../components/PartyGoal';
 import API from '../utils/api/Party';
 
 class NewParty extends Component {
@@ -38,7 +39,7 @@ class NewParty extends Component {
         return(
             <div className="row">
                 <p>Form Goes Below</p>
-                <form className="col s12">
+                <form className="col s12 party-form">
                     <div className="row">
                         <div className="col s6 input-field">
                             <input id="party-author" name="author" type="text" value={party.author} onChange={this.inputChanged}></input>
@@ -76,9 +77,12 @@ class NewParty extends Component {
                             <label htmlFor="min-members">How Many You Want? (Not Including You)</label>
                         </div>
                         <div className="col l4 offset-l0 s10 offset-s1 input-field">
-                            <input type="number" name="members-max" id="max-members" step="1" min="1" max="30" value={party['members-max']} onChange={this.inputChanged} />
+                            <input type="number" name="members-max" id="max-members" step="1" min="2" max="30" value={party['members-max']} onChange={this.inputChanged} />
                             <label htmlFor="max-members">Total Max Peeps (Including You)</label>
                         </div>
+                    </div>
+                    <div className="row">
+
                     </div>
                 </form>
             </div>
