@@ -28,14 +28,14 @@ class App extends Component {
         <div className="row">
           <div className="col s12">
             <Switch>
-              <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home}/>
-              <Route exact path={`${process.env.PUBLIC_URL}/forum`} component={ForumIndex} />
-              <Route exact path={`${process.env.PUBLIC_URL}/forum/:id`} component={Forum}/>
-              <Route exact path={`${process.env.PUBLIC_URL}/forum/:id/thread/:threadid`} component={Thread} />
-              <Route exact path={`/${process.env.PUBLIC_URL}forum/:id/post`} component={NewThread} />
-              <Route exact path={`${process.env.PUBLIC_URL}/parties`} component={Parties} />
-              <Route exact path={`${process.env.PUBLIC_URL}/parties/new`} component={NewParty} />
-              <Route path={`${process.env.PUBLIC_URL}/forum/:id/thread/`} component={NotFound} />
+              <Route exact path={`/`} component={Home}/>
+              <Route exact path={`/forum`} component={ForumIndex} />
+              <Route exact path={`/forum/:id`} component={Forum}/>
+              <Route exact path={`/forum/:id/thread/:threadid`} component={Thread} />
+              <Route exact path={`/forum/:id/post`} component={NewThread} />
+              <Route exact path={`/parties`} component={Parties} />
+              <Route exact path={`/parties/new`} component={NewParty} />
+              <Route path={`/forum/:id/thread/`} component={NotFound} />
             </Switch>
           </div>
         </div>
