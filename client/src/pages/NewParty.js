@@ -16,6 +16,7 @@ class NewParty extends Component {
     inputChanged = (event) => {
         let stateName = event.target.name;
         let value = event.target.value;
+        
 
         if (event.target.type === "number") {
             value = parseInt(value);
@@ -32,6 +33,10 @@ class NewParty extends Component {
                 }
             })
         }
+    };
+
+    parseChildInfo = (data) => {
+        this.setState( data );
     }
 
     render() {
@@ -82,7 +87,7 @@ class NewParty extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <PartyGoal category={this.state.new.category} />
+                        <PartyGoal category={this.state.new.category} state={this.state} callback={this.parseChildInfo} />
                     </div>
                 </form>
             </div>
