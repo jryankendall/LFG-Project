@@ -8147,6 +8147,10 @@ input[type=range]::-ms-thumb {
   text-align: center;
 }
 
+h1 {
+  text-align: center;
+}
+
 .site-path {
   display: flex;
   flex-wrap: nowrap;
@@ -8180,6 +8184,15 @@ input[type=range]::-ms-thumb {
 .party-form {
   background-color: white;
   border: solid 1px #333333;
+}
+
+.frontcard-box {
+  border: solid black 1px;
+  margin-bottom: 12px;
+}
+
+.frontcard-header {
+  border-bottom: solid black 1px;
 }
 
 /*# sourceMappingURL=materialize.css.map */

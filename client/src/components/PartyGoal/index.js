@@ -65,21 +65,37 @@ class PartyGoal extends Component {
             )
         } else if (this.props.category === "board games") {
             return(
-                <div>
-                    <p>Byoard</p>
-                </div>
+                <>
+                    <div className="col s12">
+                        <div className="col l8 offset-l0 s10 offset-s1 input-field">
+                            <input id="chosen-board-game" category="boardGame" name="boardName" type="text" value={this.state.new.boardGame.boardName} onChange={this.inputChanged} />
+                            <label htmlFor="chosen-board-game">Board Game Name</label>
+                        </div>
+                    </div>
+                    <div className="col s12">
+                        <div className="col l8 offset-l0 s10 offset-s1 input-field">
+                            <input id="chosen-board-source" category="boardGame" name="boardSource" type="text" value={this.state.new.boardGame.boardSource} onChange={this.inputChanged} />
+                            <label htmlFor="chosen-board-source">Board Game Source (for example, roll20 or Brettspielwelt)</label>
+                        </div>
+                    </div>
+                </>
             )
         } else if (this.props.category === "other") {
             return(
-                <div>
-                    <p>Oth0r</p>
-                </div>
+                <>
+                    <div className="col s12">
+                        <div className="col l8 offset-l0 s10 offset-s1 input-field">
+                            <input id="chosen-other" category="other" name="otherName" type="text" value={this.state.new.other.otherName} onChange={this.inputChanged} />
+                            <label htmlFor="chosen-other">Title of Other Thing</label>
+                        </div>
+                    </div>
+                </>
             )
         } else {
             console.log("What happened?!");
             return(
                 <div>
-                    <p>No! NOOOOO!</p>
+                    <p>&nbsp; Select a category above</p>
                 </div>
             )
         };

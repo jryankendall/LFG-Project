@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PartyGoal from '../components/PartyGoal';
+import { TimePicker } from 'react-materialize';
 import API from '../utils/api/Party';
 
 class NewParty extends Component {
@@ -14,8 +15,8 @@ class NewParty extends Component {
     }
 
     inputChanged = (event) => {
-        let stateName = event.target.name;
-        let value = event.target.value;
+        let stateName = event.target.name || "noName";
+        let value = event.target.value || "noValue";
         
 
         if (event.target.type === "number") {
@@ -35,6 +36,17 @@ class NewParty extends Component {
         }
     };
 
+    timeChanged = (hour, minute) => {
+        this.setState(state => {
+            return {
+                ...state,
+                startHour: hour,
+                startMinute: minute
+            }
+        })
+        
+    }
+
     parseChildInfo = (data) => {
         this.setState( data );
     }
@@ -43,8 +55,7 @@ class NewParty extends Component {
         const party = this.state.new;
         return(
             <div className="row">
-                <p>Form Goes Below</p>
-                <form className="col s12 party-form">
+                <form className="col l10 offset-l1 s12 party-form">
                     <div className="row">
                         <div className="col s6 input-field">
                             <input id="party-author" name="author" type="text" value={party.author} onChange={this.inputChanged}></input>
@@ -85,9 +96,21 @@ class NewParty extends Component {
                             <input type="number" name="members-max" id="max-members" step="1" min="2" max="30" value={party['members-max']} onChange={this.inputChanged} />
                             <label htmlFor="max-members">Total Max Peeps (Including You)</label>
                         </div>
+                        <div className="col l6 offset-10 s10 offset-s1">
+                            <label>
+                                <input type="checkbox" className="filled-in" id="party-requires-approval" name="require-approval" />
+                                <span>Require leader approval before accepting non-friends applicants?</span>
+                            </label>
+                        </div>
                     </div>
                     <div className="row">
                         <PartyGoal category={this.state.new.category} state={this.state} callback={this.parseChildInfo} />
+                    </div>
+                    <div className="row">
+                        <div className="col s12">
+                            <p>Start Time</p>
+                            <TimePicker id="party-start-time" onChange={this.timeChanged}/>
+                        </div> 
                     </div>
                 </form>
             </div>
