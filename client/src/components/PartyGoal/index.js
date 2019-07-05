@@ -92,7 +92,6 @@ class PartyGoal extends Component {
                 </>
             )
         } else {
-            console.log("What happened?!");
             return(
                 <div>
                     <p>&nbsp; Select a category above</p>

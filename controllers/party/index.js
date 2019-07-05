@@ -17,7 +17,9 @@ module.exports = {
 
         },
         byCategory: (req, res) => {
-            db.find(req.body.data, (err, document) => {
+            console.log(req.query);
+            
+            db.find(req.query, (err, document) => {
                 if (err) {
                     console.log(err)
                     return res.status(422).json(err);

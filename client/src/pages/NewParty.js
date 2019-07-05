@@ -9,12 +9,14 @@ class NewParty extends Component {
 
     state = {
         new: {
+            title: "",
             author: "",
             'members-got': 1,
             'members-min': 3,
             'members-max': 5,
         },
-        disabled: false
+        disabled: false,
+        category: ""
     }
 
     inputChanged = (event) => {
@@ -66,6 +68,7 @@ class NewParty extends Component {
         let endTime = moment(startTime).add(partyDuration, 'h').toISOString();
         let details = this.getTitle();
         
+        
         let newPartyObj = {
             title: grab("party-title").value || "Untitled",
             author: grab("party-author").value || "Anonymous",
@@ -111,7 +114,7 @@ class NewParty extends Component {
         const category = this.state.category;
         switch (category) {
             case "videoGame":
-                return [this.state.videoName, this.state.videoSource];
+                return [this.state.gameName, this.state.gameSource];
             case "boardGame":
                 return [this.state.boardName, this.state.boardSource];
             case "other":
@@ -126,6 +129,7 @@ class NewParty extends Component {
         return(
             <div className="row">
                 <form className="col l10 offset-l1 s12 party-form">
+                    <h2><i className="material-icons large prefix">add</i>NEW PARTY </h2>
                     <div className="row">
                         <div className="col s6 input-field">
                             <input id="party-author" name="author" type="text" value={party.author} onChange={this.inputChanged}></input>

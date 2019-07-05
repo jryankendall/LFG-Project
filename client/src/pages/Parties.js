@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import Party from '../components/Party';
 import API from '../utils/api/Party';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-materialize';
 
 class Parties extends Component {
 
     state = {
         searchQuery: "",
-        searchCategory: ""
+        searchCategory: "",
+        found: [],
+        disabled: false
     }
 
     changeState = (stateName, value) => {
@@ -25,12 +28,18 @@ class Parties extends Component {
         this.changeState("searchCategory", radioValue);
     }
 
-    searchForParties = () => {
+    searchForParties = (event) => {
+        event.preventDefault();
+        if (this.state.disabled) {
+            return;
+        }
         if (this.state.searchCategory) {
+            this.setState({disabled: true});
+            
             API.get( { category: this.state.searchCategory } )
                 .then( (response) => {
-                    console.log(response);
-                    
+                    console.log(response.data);
+                    this.changeState('found', response.data);
                 })
                 .catch( err => {
                     console.log(err);
@@ -43,6 +52,7 @@ class Parties extends Component {
     }
 
     render() {
+        const foundParties = this.state.found || [];
         return(
             <div className="row">
                 <div className="col s12">
@@ -72,14 +82,26 @@ class Parties extends Component {
                             <span>Other</span>
                         </label>
                     </div>
-                    <button className="btn col xl4 offset-xl4 l6 offset-l3 m8 offset-m2 s10 offset-s1 waves-effect" id="submit-search-btn" onClick={this.searchForParties}>
-                        <span role="img" aria-label="hand emoji">✋</span> <span>SLAM THAT SEARCH BTN</span>
-                    </button>
+                    <Button id="submit-search-btn" 
+                    className="btn col xl4 offset-xl4 l6 offset-l3 m8 offset-m2 s10 offset-s1 waves-effect" node="a" waves="light" 
+                    onClick={this.searchForParties}
+                    disabled={this.state.disabled}
+                    large>
+                        {this.state.disabled ? 'Searching!' : <><span role="img" aria-label="hand emoji">✋</span> <span>SLAM THAT SEARCH BTN</span></> }</Button>
                 </div>
                 <div className="col s12">
-                    <p>Parties Go Here</p>
-                    Like this one
-                    <Party />
+                    {foundParties.map((value, index) => {
+                        let thisThread = foundParties[index];
+                        console.log(thisThread);
+                        
+                        if (thisThread) {
+                            return ( <Party 
+                                key={index}
+                                details={thisThread}
+                                />
+                            )
+                        }
+                    })}
                 </div>
             </div>
         )

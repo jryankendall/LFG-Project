@@ -14,7 +14,7 @@ export default {
     },
     get: (conditions) => {
         return axios.get(startUrl + "/api/party/search", {
-            data: conditions
+            params: conditions
         })
     }
 }
