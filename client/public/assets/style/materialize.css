@@ -8186,6 +8186,20 @@ h1 {
   border: solid 1px #333333;
 }
 
+#party-description-input {
+  border: solid 1px black;
+}
+
+#have-members, #min-members, #max-members, #party-start-time, #chosen-video-game,
+#chosen-game-source, #chosen-board-game, #chosen-board-source, #chosen-other, #party-author,
+#party-title {
+  border: solid 1px black;
+}
+
+#submit-party-btn {
+  margin-bottom: 12px;
+}
+
 .frontcard-box {
   border: solid black 1px;
   margin-bottom: 12px;

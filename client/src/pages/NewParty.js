@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import PartyGoal from '../components/PartyGoal';
-import { TimePicker } from 'react-materialize';
+import { TimePicker, Select, Textarea, Button } from 'react-materialize';
 import API from '../utils/api/Party';
+
+const moment = require("moment");
 
 class NewParty extends Component {
 
@@ -11,12 +13,13 @@ class NewParty extends Component {
             'members-got': 1,
             'members-min': 3,
             'members-max': 5,
-        }
+        },
+        disabled: false
     }
 
     inputChanged = (event) => {
-        let stateName = event.target.name || "noName";
-        let value = event.target.value || "noValue";
+        let stateName = event.target.name;
+        let value = event.target.value;
         
 
         if (event.target.type === "number") {
@@ -47,8 +50,75 @@ class NewParty extends Component {
         
     }
 
+    submitParty = (event) => {
+        const grab = function(element) {
+            return document.getElementById(element);
+        }
+        console.log(event);
+        event.preventDefault();
+        if (this.state.disabled) {
+            return;
+        }
+        this.setState({disabled: true});
+        let startTime =  grab("party-start-time").value;
+        startTime = moment(startTime, "hh:mm a").toISOString();
+        let partyDuration = parseInt(grab("end-time-select").value) || 1;
+        let endTime = moment(startTime).add(partyDuration, 'h').toISOString();
+        let details = this.getTitle();
+        
+        let newPartyObj = {
+            title: grab("party-title").value || "Untitled",
+            author: grab("party-author").value || "Anonymous",
+            category: this.state.new.category || "other",
+            expiry: endTime,
+            details: {
+                body: grab("party-description-input").value.toString(),
+                goals: {
+                    goalType: this.state.new.category || "other",
+                    title: details[0] || "None",
+                    source: details[1] || "None"
+                },
+                time: {
+                    start: startTime,
+                    end: endTime
+                },
+                members: {
+                    needApproval: false,
+                    min: this.state.new["members-got"],
+                    max: this.state.new["members-max"],
+                    wanted: this.state.new["members-min"],
+                    list: [this.state.new.author]
+                }
+            }
+        }
+
+        API.post(newPartyObj)
+            .then( success => {
+                console.log(success);
+            })
+            .catch(err => {
+                console.log(err);
+                
+            })
+
+    }
+
     parseChildInfo = (data) => {
         this.setState( data );
+    }
+
+    getTitle = () => {
+        const category = this.state.category;
+        switch (category) {
+            case "videoGame":
+                return [this.state.videoName, this.state.videoSource];
+            case "boardGame":
+                return [this.state.boardName, this.state.boardSource];
+            case "other":
+                return [this.state.otherName, null];
+            default:
+                return [null, null];
+        }
     }
 
     render() {
@@ -108,10 +178,48 @@ class NewParty extends Component {
                     </div>
                     <div className="row">
                         <div className="col s12">
-                            <p>Start Time</p>
-                            <TimePicker id="party-start-time" onChange={this.timeChanged}/>
+                            <p>When you plan to start?</p>
+                            <TimePicker id="party-start-time" onChange={this.timeChanged} />
+                        </div> 
+                        <div className="col s12">
+                            <p>About how long you gonna do this for? This party will be automatically deleted after this long.</p>
+                            <Select defaultValue="" id="end-time-select" icon="timer" s={8}>
+                                <option value="" disabled>
+                                Choose a time here
+                                </option>
+                                <option value={1}>
+                                    Like an hour
+                                </option>
+                                <option value={2}>
+                                    Around 2 hours
+                                </option>
+                                <option value={3}>
+                                    3 hours
+                                </option>
+                                <option value={4}>
+                                    Like 4 hours baby!
+                                </option>
+                            </Select>
+                            <div className="col s12">
+                            <p>Type a short description of your party below. Provide any necessary details such as
+                                how to find you, server addresses, etc. </p>
+                                </div>
+                            <Textarea
+                                s={12}
+                                m={12}
+                                l={10}
+                                xl={10}
+                                placeholder="Description goes in here."
+                                id="party-description-input"
+                            />
                         </div> 
                     </div>
+                    <Button id="submit-party-btn" 
+                    className="col s4 offset-s4" node="a" waves="light" 
+                    onClick={this.submitParty}
+                    disabled={this.state.disabled}
+                    large>
+                        {this.state.disabled ? 'Sending...' : 'Submit Party'}</Button>
                 </form>
             </div>
         )
