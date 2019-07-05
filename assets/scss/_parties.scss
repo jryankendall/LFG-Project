@@ -42,9 +42,17 @@
     margin-bottom: 12px;
 }
 
-.party-box {
+.party-box, .fullparty-box {
     border: solid 1px black;
     background-color: white;
     margin-bottom: 8px;
     margin-top: 8px;
+}
+
+.detail-prefix {
+    font-weight: bold;
+}
+
+.join-button {
+    margin-bottom: 12px;
 }

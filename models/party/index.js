@@ -19,7 +19,7 @@ const PartySchema = new Schema({
             needApproval: { type: Boolean, required: true, default: false },
             min: { type: Number, required: true, default: 1 },
             max: { type: Number, required: false, default: 3 },
-            wanted: { type: Number, default: 1, default: 2 },
+            wanted: { type: Number, default: 2 },
             list: { type: Array, required: true, default: [] }
         },
         time: {

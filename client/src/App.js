@@ -11,6 +11,7 @@ import Sitepath from './components/Sitepath';
 import NotFound from './pages/NotFound';
 import Parties from './pages/Parties';
 import NewParty from './pages/NewParty';
+import FullParty from './pages/FullParty';
 
 
 require("dotenv").config();
@@ -35,6 +36,7 @@ function App() {
               <Route exact path={`/parties`} component={Parties} />
               <Route exact path={`/parties/new`} component={NewParty} />
               <Route path={`/forum/:id/thread/`} component={NotFound} />
+              <Route path={`/parties/:id`} component={FullParty} />
               <Route component={NotFound} />
             </Switch>
           </div>

@@ -100,6 +100,10 @@ class Parties extends Component {
                                 details={thisThread}
                                 />
                             )
+                        } else {
+                            return(
+                                <p>No Results</p>
+                            )
                         }
                     })}
                 </div>

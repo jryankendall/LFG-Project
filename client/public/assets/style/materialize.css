@@ -8126,7 +8126,7 @@ input[type=range]::-ms-thumb {
   background-color: #fff;
 }
 
-#nickname {
+#nickname, #thread-title {
   background-color: #fff;
 }
 
@@ -8200,11 +8200,19 @@ h1 {
   margin-bottom: 12px;
 }
 
-.party-box {
+.party-box, .fullparty-box {
   border: solid 1px black;
   background-color: white;
   margin-bottom: 8px;
   margin-top: 8px;
+}
+
+.detail-prefix {
+  font-weight: bold;
+}
+
+.join-button {
+  margin-bottom: 12px;
 }
 
 .frontcard-box {
