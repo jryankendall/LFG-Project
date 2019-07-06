@@ -7,28 +7,6 @@ router.post("/register", async (req, res) => {
     db.create.one(req, res);
 })
 
-router.route("/dev/testlogin/")
-    .post(async (req, res) => {
-/*         console.log(req);
- */        
-
-        db.login(req, res);
-});
-
-router.route("/dev/test/")
-    .get(async (req, res) => {
-        console.log(req.query);
-        
-        db.get.one.byName(req, res);
-});
-
-router.route("/dev/testregister/")
-    .post(async (req, res) => {
-        console.log(req.body);
-        
-        db.create.one(req, res);
-})
-
 router.route("/dev/testdrop/")
     .delete(async (req, res) => {
         db.delete.all(req, res);

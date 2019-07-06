@@ -7,9 +7,9 @@ const testRoutes = require('./test');
 // API Routes
 router.use("/api", apiRoutes);
 
-router.use("/pages", pageRoutes);
+/* router.use("/pages", pageRoutes); */
 
-router.use("/devtests", testRoutes);
+/* router.use("/devtests", testRoutes); */
 
 router.use(function(req, res) {
   res.sendFile(path.join(__dirname, "../client/public/index.html"));
