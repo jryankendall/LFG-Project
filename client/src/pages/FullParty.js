@@ -63,7 +63,7 @@ class FullParty extends Component {
                                 <p><span className="detail-prefix">Objective: </span> {party.details.goals.title}</p>
                                 <p><span className="detail-prefix">Source: </span> {party.details.goals.source}</p>
                                 <p><span className="detail-prefix">Users Joined: </span> {party.details.members.list.map((value, index) => { return value; })} </p>
-                                <p><span className="detail-prefix">Members:</span> {party.details.members.list.length}, <span className="detail-prefix">Wanted: </span>{party.details.members.wanted-1}</p>
+                                <p><span className="detail-prefix">Members:</span> {party.details.members.list.length}, <span className="detail-prefix">Wanted: </span>{party.details.members.wanted}</p>
                                 <p><span className="detail-prefix">Information</span><br /> {party.details.body}</p>
                             </div>
                             <div className="col s6 input-field username-input">

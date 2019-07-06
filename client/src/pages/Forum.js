@@ -73,8 +73,9 @@ class Forum extends Component {
                 <div>
                     <h2>This is the {this.props.match.params.id} Subforum</h2>
                     <Link to={`/forum/${this.props.match.params.id}/post`}><button>Create New Thread</button></Link>
+                    <p>NOTE: Threads are deleted 2 hours after creation.</p>
                 </div>
-                <table>
+                <table className="subforum-box">
                     <thead>
                         <tr>
                             <th>Title</th>
