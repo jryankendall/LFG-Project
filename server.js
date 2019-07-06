@@ -47,7 +47,7 @@ app.use(routes);
 //Mongoose Connection
 mongoose.connect(process.env.MONGODB_URI ||  "mongodb://localhost/lfgDb", { useNewUrlParser: true } );
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   
   res.sendFile(path.resolve(__dirname, 'public', "./client/build/index.html"));
 });
