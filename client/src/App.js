@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import Nav from './components/Nav';
 import Home from './pages/Home';
@@ -18,7 +18,7 @@ require("dotenv").config();
 
 function App() {
   return(
-    <Router>
+    <>
       <Nav />
       <div className="container light-blue lighten-5 main-app-body">
         <br></br>
@@ -39,7 +39,7 @@ function App() {
           </div>
         </div>
       </div>
-    </Router>
+    </>
   )
 }
 
