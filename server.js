@@ -9,6 +9,10 @@ const pino = require('express-pino-logger')();
 const uuid = require("uuid/v4");
 const session = require("express-session");;
 const cookieParser = require("cookie-parser");
+const baseUrl = process.env.PUBLIC_URL;
+
+console.log(baseUrl);
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -47,7 +51,7 @@ app.use(routes);
 //Mongoose Connection
 mongoose.connect(process.env.MONGODB_URI ||  "mongodb://localhost/lfgDb", { useNewUrlParser: true } );
 
-app.get("/*", (req, res) => {
+app.get(baseUrl + "/*", (req, res) => {
   
   res.sendFile(path.resolve(__dirname, 'public', "./client/build/index.html"));
 });

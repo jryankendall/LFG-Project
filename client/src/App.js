@@ -15,6 +15,7 @@ import FullParty from './pages/FullParty';
 
 
 require("dotenv").config();
+const baseUrl = process.env.PUBLIC_URL;
 
 function App() {
   return(
@@ -27,15 +28,15 @@ function App() {
         </div>
         <div className="row">
           <div className="col s12">
-              <Route exact path={`/`} component={Home}/>
-              <Route exact path={`/forum`} component={ForumIndex} />
-              <Route exact path={`/forum/:id`} component={Forum}/>
-              <Route exact path={`/forum/:id/thread/:threadid`} component={Thread} />
-              <Route exact path={`/forum/:id/post`} component={NewThread} />
-              <Route exact path={`/parties`} component={Parties} />
-              <Route exact path={`/parties/new`} component={NewParty} />
-              <Route exact path={`/forum/:id/thread/`} component={NotFound} />
-              <Route exact path={`/parties/:id`} component={FullParty} />
+              <Route exact path={baseUrl + `/`} component={Home}/>
+              <Route exact path={baseUrl + `/forum`} component={ForumIndex} />
+              <Route exact path={baseUrl + `/forum/:id`} component={Forum}/>
+              <Route exact path={baseUrl + `/forum/:id/thread/:threadid`} component={Thread} />
+              <Route exact path={baseUrl + `/forum/:id/post`} component={NewThread} />
+              <Route exact path={baseUrl + `/parties`} component={Parties} />
+              <Route exact path={baseUrl + `/parties/new`} component={NewParty} />
+              <Route exact path={baseUrl + `/forum/:id/thread/`} component={NotFound} />
+              <Route exact path={baseUrl + `/parties/:id`} component={FullParty} />
           </div>
         </div>
       </div>
