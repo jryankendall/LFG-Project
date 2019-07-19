@@ -48,7 +48,12 @@ class FullParty extends Component {
 
     render() {
         let party = this.state.body;
-        if (this.state.body) {
+        if (this.props.match.params.id === 'new') {
+            return(
+                <>
+                </>
+            )
+        } else if (this.state.body) {
             return( 
                 <>
                     <div className="row">

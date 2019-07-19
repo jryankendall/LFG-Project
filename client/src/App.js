@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import Nav from './components/Nav';
 import Home from './pages/Home';
@@ -18,16 +18,15 @@ require("dotenv").config();
 
 function App() {
   return(
-    <BrowserRouter>
+    <Router>
+      <Nav />
       <div className="container light-blue lighten-5 main-app-body">
-        <Nav />
         <br></br>
         <div className="row">
           <Sitepath />
         </div>
         <div className="row">
           <div className="col s12">
-            <Switch>
               <Route exact path={`/`} component={Home}/>
               <Route exact path={`/forum`} component={ForumIndex} />
               <Route exact path={`/forum/:id`} component={Forum}/>
@@ -35,14 +34,12 @@ function App() {
               <Route exact path={`/forum/:id/post`} component={NewThread} />
               <Route exact path={`/parties`} component={Parties} />
               <Route exact path={`/parties/new`} component={NewParty} />
-              <Route path={`/forum/:id/thread/`} component={NotFound} />
-              <Route path={`/parties/:id`} component={FullParty} />
-              <Route component={NotFound} />
-            </Switch>
+              <Route exact path={`/forum/:id/thread/`} component={NotFound} />
+              <Route exact path={`/parties/:id`} component={FullParty} />
           </div>
         </div>
       </div>
-    </BrowserRouter>
+    </Router>
   )
 }
 
